@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EmployeDemo.Model {
-   public class Department: INotifyPropertyChanged, IEquatable<Department> {
+   public class Department: INotifyPropertyChanged {
 
       private string m_strCode;
       private string m_strName;
@@ -65,29 +65,6 @@ namespace EmployeDemo.Model {
       private void NotifyPropertyChanged([CallerMemberName] String propertyName = "") {
          PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
          state = DataRowState.Modified;
-      }
-
-      public override int GetHashCode() {
-         return Tuple.Create<string, string>(m_strCode, m_strName).GetHashCode();
-      }
-
-      public override bool Equals(object obj) {
-         return Equals(obj as Department);
-      }
-
-      public bool Equals(Department other) {
-         if (m_strCode == other.code && m_strName == other.name) return true;
-         return false;
-      }
-
-      public static bool operator == (Department obj1, Department obj2) {
-         if (((object)obj1) == null || ((object)obj2) == null) return Object.Equals(obj1, obj2); ;
-         return obj1.Equals(obj2);
-      }
-
-      public static bool operator != (Department obj1, Department obj2) {
-         if (((object)obj1) == null || ((object)obj2) == null) return !Object.Equals(obj1, obj2); ;
-         return !(obj1.Equals(obj2));
       }
 
       public DataRowState state { get; internal set; }

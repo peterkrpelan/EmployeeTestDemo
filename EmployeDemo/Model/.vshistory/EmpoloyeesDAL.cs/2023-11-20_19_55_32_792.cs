@@ -22,8 +22,8 @@ namespace EmployeDemo.Model {
 
 
 
-      private const string _sqlconstring = "Server={0};Database={1};Trusted_Connection=True";
-      //private const string _sqlconstring = "Server={0};AttachDbFilename={1};Trusted_Connection=True";
+      //private const string _sqlconstring = "Server={0};Database={1};Trusted_Connection=True";
+      private const string _sqlconstring = "Server={0};AttachDbFilename={1};Trusted_Connection=True";
 
       
       public EmpoloyeesDAL() {
@@ -72,7 +72,7 @@ namespace EmployeDemo.Model {
             m_cmUpdDepartment.Parameters.Add(new SqlParameter("@department_name", SqlDbType.NVarChar, 50));
             m_cmUpdDepartment.Parameters.Add(new SqlParameter("@department_code", SqlDbType.Char, 10));
             m_cmUpdDepartment.Parameters.Add(new SqlParameter("@parent_id"      , SqlDbType.Int));
-            m_cmUpdDepartment.Parameters.Add(new SqlParameter("@manager_id"     , SqlDbType.Int));
+            m_cmUpdDepartment.Parameters.Add(new SqlParameter("@managerID"      , SqlDbType.Int));
             m_cmUpdDepartment.Parameters.Add(new SqlParameter("@ID"             , SqlDbType.Int));
             m_cmUpdDepartment.CommandType = CommandType.StoredProcedure;
 
@@ -141,8 +141,8 @@ namespace EmployeDemo.Model {
          beginTran();
          m_cmUpdDepartment.Parameters["@department_name"].Value = a_department.name;
          m_cmUpdDepartment.Parameters["@department_code"].Value = a_department.code;
-         m_cmUpdDepartment.Parameters["@parent_id"      ].Value = (a_department.parent_ID < 1) ? Convert.DBNull: a_department.parent_ID;
-         m_cmUpdDepartment.Parameters["@manager_id"     ].Value = a_department.manager_id;
+         m_cmUpdDepartment.Parameters["@parent_id"      ].Value = a_department.parent_ID;
+         m_cmUpdDepartment.Parameters["@managerID"      ].Value = a_department.manager_id;
          m_cmUpdDepartment.Parameters["@ID"             ].Value = a_department.ID;
          m_cmUpdDepartment.Transaction = m_tran;
          return m_cmUpdDepartment.ExecuteNonQuery();

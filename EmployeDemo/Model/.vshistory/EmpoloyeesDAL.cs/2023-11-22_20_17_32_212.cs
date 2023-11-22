@@ -141,7 +141,7 @@ namespace EmployeDemo.Model {
          beginTran();
          m_cmUpdDepartment.Parameters["@department_name"].Value = a_department.name;
          m_cmUpdDepartment.Parameters["@department_code"].Value = a_department.code;
-         m_cmUpdDepartment.Parameters["@parent_id"      ].Value = (a_department.parent_ID < 1) ? Convert.DBNull: a_department.parent_ID;
+         m_cmUpdDepartment.Parameters["@parent_id"      ].Value = (a_department.parent_ID < 1) ? Convert.DBNull: a_department.p;
          m_cmUpdDepartment.Parameters["@manager_id"     ].Value = a_department.manager_id;
          m_cmUpdDepartment.Parameters["@ID"             ].Value = a_department.ID;
          m_cmUpdDepartment.Transaction = m_tran;

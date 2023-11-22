@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EmployeDemo.Model {
-   public class Employee : INotifyPropertyChanged, IEquatable<Employee> {
+   public class Employee: INotifyPropertyChanged {
 
       private string m_strEmpNum;
       private string m_strFrsName;
@@ -23,7 +23,7 @@ namespace EmployeDemo.Model {
          ID = identity++;
          state = DataRowState.Added;
       }
-      public Employee(int aID, string aEmpNum, string aFrsName, string aLstName, int aJob, string aPhone, string aMail, int aDeptID) {
+      public Employee( int aID, string aEmpNum, string aFrsName, string aLstName, int aJob, string aPhone, string aMail, int aDeptID) {
          ID = aID;
          identity = aID;
          m_strEmpNum = aEmpNum;
@@ -38,7 +38,7 @@ namespace EmployeDemo.Model {
       public string employe_number {
          get { return m_strEmpNum; }
          set {
-            if (m_strEmpNum != value) {
+            if(m_strEmpNum != value) {
                m_strEmpNum = value;
                notifyPropertyChanged();
             }
@@ -47,7 +47,7 @@ namespace EmployeDemo.Model {
       public string first_name {
          get { return m_strFrsName; }
          set {
-            if (m_strFrsName != value) {
+            if(m_strFrsName != value) {
                m_strFrsName = value;
                notifyPropertyChanged();
             }
@@ -63,7 +63,7 @@ namespace EmployeDemo.Model {
          }
 
       }
-      public int job {
+      public int job { 
          get { return m_iJob; }
          set {
             if (m_iJob != value) {
@@ -72,10 +72,10 @@ namespace EmployeDemo.Model {
             }
          }
       }
-      public string phone {
+      public string phone { 
          get { return m_strPhone; }
          set {
-            if (m_strPhone != value) {
+            if(m_strPhone != value) {
                m_strPhone = value;
                notifyPropertyChanged();
             }
@@ -107,30 +107,6 @@ namespace EmployeDemo.Model {
       private void notifyPropertyChanged([CallerMemberName] String propertyName = "") {
          PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
          if (state == DataRowState.Unchanged) state = DataRowState.Modified;
-      }
-
-      public override int GetHashCode() {
-         return Tuple.Create<string, string, string>(m_strEmpNum, m_strFrsName, m_strLstName).GetHashCode();
-      }
-
-      public override bool Equals(object obj) {
-         return Equals(obj as Employee);
-      }
-
-
-      public static bool operator == (Employee person1, Employee person2) {
-         if (((object)person1) == null || ((object)person2) == null) return Object.Equals(person1, person2);
-         return person1.Equals(person2);
-      }
-
-      public static bool operator != (Employee person1, Employee person2){
-         if (((object)person1) == null || ((object)person2) == null) return !Object.Equals(person1, person2);
-         return person1.Equals(person2);
-
-      }
-      public bool Equals(Employee other) {
-         if (m_strEmpNum == other.employe_number && m_strFrsName == other.first_name && m_strLstName == other.last_name) return true;
-         return false;
       }
 
       public DataRowState state { get; internal set; }

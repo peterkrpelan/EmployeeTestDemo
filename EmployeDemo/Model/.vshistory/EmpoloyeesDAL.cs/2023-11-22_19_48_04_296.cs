@@ -22,8 +22,8 @@ namespace EmployeDemo.Model {
 
 
 
-      private const string _sqlconstring = "Server={0};Database={1};Trusted_Connection=True";
-      //private const string _sqlconstring = "Server={0};AttachDbFilename={1};Trusted_Connection=True";
+      //private const string _sqlconstring = "Server={0};Database={1};Trusted_Connection=True";
+      private const string _sqlconstring = "Server={0};AttachDbFilename={1};Trusted_Connection=True";
 
       
       public EmpoloyeesDAL() {
